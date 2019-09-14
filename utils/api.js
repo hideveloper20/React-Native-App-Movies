@@ -1,0 +1,22 @@
+const BASE_API = 'https://yts.lt/api/v2/';
+
+class Api {
+  async getSuggestion(id) {
+    //Peticion
+    const query = await fetch( //fetch devuelve una promesa por eso hago el await por que es codigo asyncrono
+      `${BASE_API}movie_suggestions.json?movie_id=${id}`);
+    const {data} = await query.json();
+    //console.log(data.movies);
+    return data.movies;
+  }
+  async getMovies() {
+    //Peticion
+    const query = await fetch(
+      `${BASE_API}list_movies.json`);
+    const {data} = await query.json();
+    //console.log(data.movies);
+    return data.movies;
+  }
+}
+
+export default new Api();
