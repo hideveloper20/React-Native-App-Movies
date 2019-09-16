@@ -7,15 +7,17 @@ import Api from './utils/api';
 import Category from './src/videos/containers/category-list';
 import Player from './src/player/containers/player';
 import {Provider} from 'react-redux';
-import store from './store/store';
+//import store from './store/store';
+import {PersistGate} from 'redux-persist/integration/react'; //Un componente que se va usar como si fuera el provider para unir la aplicacion de reduxpersist con la apliacion que ya tengo dentro de react
+import {store, persistor} from './store/store';
 
 //Los containers se pueden conectar al estado de redux
 
 class App2 extends Component {
-  state = {
+  /* state = {
     /* suggestionList: [],
-    categoryList: [], */
-  };
+    categoryList: [], 
+  }; */
   async componentDidMount() {
     //Hago que se ejecute de una forma asyncrona
     const categoriesList = await Api.getMovies();
@@ -47,16 +49,19 @@ class App2 extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Home>
-          <Header>
-            <Text>Hellouda</Text>
-          </Header>
-          <Player />
-          <Text>Buscador</Text>
-          <Text>Categorias</Text>
-          <Category />
-          <Suggestion />
-        </Home>
+        {/*Ahora es un store que puede persistir datos */}
+        <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+          <Home>
+            <Header>
+              <Text>Hellouda</Text>
+            </Header>
+            <Player />
+            <Text>Buscador</Text>
+            <Text>Categorias</Text>
+            <Category />
+            <Suggestion />
+          </Home>
+        </PersistGate>
       </Provider>
     );
   }
