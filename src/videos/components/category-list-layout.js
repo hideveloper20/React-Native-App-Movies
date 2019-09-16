@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, StyleSheet, View, ImageBackground} from 'react-native';
 
 //Componente funcional
-CategoryListLayout = props => {
+const CategoryListLayout = props => {
   return (
     <ImageBackground
       source={require('../../../assets/images/background.png')}

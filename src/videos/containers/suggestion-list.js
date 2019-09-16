@@ -4,6 +4,13 @@ import Layout from '../components/suggestion-list-layout';
 import Empty from '../components/empty';
 import Separator from '../components/vertical-separator';
 import Suggestion from '../components/suggestion';
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => {
+  return {
+    list: state.suggestionList,
+  };
+};
 
 class SuggestionList extends Component {
   keyExtractor = item => item.id.toString(); //Anexar la key a la lista, la key tiene que ser texto y la extraigo del item
@@ -43,4 +50,4 @@ class SuggestionList extends Component {
 
 const styles = StyleSheet.create({});
 
-export default SuggestionList;
+export default connect(mapStateToProps)(SuggestionList);

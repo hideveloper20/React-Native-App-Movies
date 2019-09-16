@@ -7,7 +7,10 @@ import Category from '../components/category';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
-  debugger;
+  /* debugger; */
+  return {
+    list: state.categoriesList, //Lo recibo de un state global en vez de un componente superior
+  };
 };
 
 /* function mapStateToProps(state) {

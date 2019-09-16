@@ -13,20 +13,36 @@ import store from './store/store';
 
 class App2 extends Component {
   state = {
-    suggestionList: [],
-    categoryList: [],
+    /* suggestionList: [],
+    categoryList: [], */
   };
   async componentDidMount() {
     //Hago que se ejecute de una forma asyncrona
-    const movies = await Api.getSuggestion(10);
-    const categories = await Api.getMovies();
-    console.log(movies);
+    const categoriesList = await Api.getMovies();
+    //ESTO VA DIRECTAMENTE AL REDUCER
+    store.dispatch({
+      type: 'SET_CATEGORY_LIST', //Nombre de la acción
+      payload: {
+        //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
+        categoriesList,
+      },
+    });
+    const suggestionList = await Api.getSuggestion(10);
+    //ESTO VA DIRECTAMENTE AL REDUCER
+    store.dispatch({
+      type: 'SET_SUGGESTION_LIST',
+      payload: {
+        //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
+        suggestionList,
+      },
+    });
+    /* console.log(movies);
     console.log('Categorias');
-    console.log(categories);
-    this.setState({
+    console.log(categories); */
+    /* this.setState({
       suggestionList: movies,
       categoryList: categories,
-    });
+    }); */
   }
   render() {
     return (
@@ -38,8 +54,8 @@ class App2 extends Component {
           <Player />
           <Text>Buscador</Text>
           <Text>Categorias</Text>
-          <Category list={this.state.categoryList} />
-          <Suggestion list={this.state.suggestionList} />
+          <Category />
+          <Suggestion />
         </Home>
       </Provider>
     );
