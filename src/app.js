@@ -17,6 +17,7 @@ class app extends Component {
   async componentDidMount() {
     //Hago que se ejecute de una forma asyncrona
     const categoriesList = await Api.getMovies();
+    //this.props.listarCategorias(categoriesList);
     //ESTO VA DIRECTAMENTE AL REDUCER
     this.props.dispatch({
       //this.props por que el dispatch viene por las propiedades
@@ -70,5 +71,19 @@ const mapStateToProps = state => {
     selectedMovie: state.selectedMovie, //Ahora tengo esta propiedad disponible dentro del componente
   };
 };
+
+/* const mapDispatchToProps = dispatch => {
+  return {
+    listarCategorias: categoriesList => {
+      dispatch({
+        type: 'SET_CATEGORY_LIST', //Nombre de la acción
+        payload: {
+          //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
+          categoriesList,
+        },
+      });
+    },
+  };
+}; */
 
 export default connect(mapStateToProps)(app);

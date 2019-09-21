@@ -6,7 +6,7 @@ const Category = props => {
     <ImageBackground
       style={styles.wrapper}
       source={{uri: props.background_image}}>
-      <Text style={styles.genre}>{props.genres}</Text>
+      <Text style={styles.genre}>{props.genres[0]}</Text>
     </ImageBackground>
   );
 };
