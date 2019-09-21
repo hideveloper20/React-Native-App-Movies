@@ -11,6 +11,9 @@ const videos = (state = {}, action) => {
     case 'SET_SUGGESTION_LIST':
       return {...state, ...action.payload};
 
+    case 'SET_SELECTED_MOVIE':
+      return {...state, selectedMovie: action.payload.movie}; //Agrego un key nuevo, selectedMoview
+
     default:
       //Es como si no hiciera nada, retorno el state anterior
       return state;

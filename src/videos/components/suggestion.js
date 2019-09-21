@@ -1,26 +1,28 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
-import { hidden } from 'ansi-colors';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {hidden} from 'ansi-colors';
 
 const Suggestion = props => {
   return (
-    <View style={styles.container}>
-      <View style={styles.left}>
-        <Image
-          style={styles.cover}
-          //source={require('../../../assets/images/space.jpg')}
-          source={{uri:props.medium_cover_image}}
-        />
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={styles.container}>
+        <View style={styles.left}>
+          <Image
+            style={styles.cover}
+            //source={require('../../../assets/images/space.jpg')}
+            source={{uri: props.medium_cover_image}}
+          />
+        </View>
+        <View style={styles.genre}>
+          <Text style={styles.genreText}>{props.genres[0]}</Text>
+        </View>
+        <View style={styles.right}>
+          <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.year}>{props.year}</Text>
+          <Text style={styles.rating}>{props.rating}</Text>
+        </View>
       </View>
-      <View style={styles.genre}>
-        <Text style={styles.genreText}>{props.genres[0]}</Text>
-      </View>
-      <View style={styles.right}>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.year}>{props.year}</Text>
-        <Text style={styles.rating}>{props.rating}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -28,17 +30,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
-  genre:{
-    position:'absolute',
-    left:0,
-    top:0,
-    backgroundColor:'black',
-    paddingVertical:5,
-    paddingHorizontal:7
+  genre: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    backgroundColor: 'black',
+    paddingVertical: 5,
+    paddingHorizontal: 7,
   },
-  genreText:{
-    color:'white',
-    fontSize:11,
+  genreText: {
+    color: 'white',
+    fontSize: 11,
   },
   cover: {
     height: 150,
@@ -56,18 +58,18 @@ const styles = StyleSheet.create({
   year: {
     backgroundColor: '#70b124',
     paddingVertical: 4,
-    paddingHorizontal:6,
+    paddingHorizontal: 6,
     color: 'white',
     fontSize: 11,
-    borderRadius:5,
+    borderRadius: 5,
     overflow: 'hidden',
-    alignSelf:'flex-start'
+    alignSelf: 'flex-start',
   },
-  rating:{
-      color:'#6b6b6b',
-      fontSize:14,
-      fontWeight:'bold'
-  }
+  rating: {
+    color: '#6b6b6b',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
 });
 
 export default Suggestion;

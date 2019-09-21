@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  blackList: ['selectedMoview'], //Lista de parte del store que no quiero persistir
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
