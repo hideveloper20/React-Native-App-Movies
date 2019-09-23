@@ -8,6 +8,7 @@ import Suggestion from '../src/videos/containers/suggestion-list';
 import Api from '../utils/api';
 import Category from '../src/videos/containers/category-list';
 import Movie from './screens/containers/movie';
+import Search from './sections/containers/Search';
 
 class app extends Component {
   /* state = {
@@ -57,8 +58,7 @@ class app extends Component {
         </Header>
 
         {/* <Movie /> */}
-        <Text>Buscador</Text>
-        <Text>Categorias</Text>
+        <Search />
         <Category />
         <Suggestion />
       </Home>
