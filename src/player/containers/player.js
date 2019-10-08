@@ -40,7 +40,7 @@ class Player extends Component {
 
   playPause = () => {
     this.setState({
-      paused: !this.state.paused, //Alrevez, que esta en falso paso a verdader y viceversa
+      paused: !this.state.paused, //Alrevez, que esta en falso paso a verdadero y viceversa
     });
   };
 

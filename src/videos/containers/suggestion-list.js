@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 const mapStateToProps = state => {
   return {
     list: state.suggestionList,
+    //list: state.suggestionsReducer,
   };
 };
 
@@ -16,7 +17,8 @@ class SuggestionList extends Component {
   keyExtractor = item => item.id.toString(); //Anexar la key a la lista, la key tiene que ser texto y la extraigo del item
   renderEmpty = () => <Empty text="No hay sugerencias"></Empty>;
   itemSepartor = () => <Separator color="red" />;
-  viewMovie = item => { //recibo el item que es el objeto que tiene todas las partes de la pelicula, nombre, background, otras cosas mas
+  viewMovie = item => {
+    //recibo el item que es el objeto que tiene todas las partes de la pelicula, nombre, background, otras cosas mas
     //Como el componente esta conectado a redux puedo usar el dispatch
     this.props.dispatch({
       type: 'SET_SELECTED_MOVIE', //accion

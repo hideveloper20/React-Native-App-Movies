@@ -9,6 +9,7 @@ import Api from '../utils/api';
 import Category from '../src/videos/containers/category-list';
 import Movie from './screens/containers/movie';
 import Search from './sections/containers/Search';
+import {actionSuggestion} from '../actions/actions';
 
 class app extends Component {
   /* state = {
@@ -20,23 +21,26 @@ class app extends Component {
     const categoriesList = await Api.getMovies();
     //this.props.listarCategorias(categoriesList);
     //ESTO VA DIRECTAMENTE AL REDUCER
-    this.props.dispatch({
+    /*  this.props.dispatch({
       //this.props por que el dispatch viene por las propiedades
       type: 'SET_CATEGORY_LIST', //Nombre de la acción
       payload: {
-        //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
+        //Aqui van los datos de la acción dentro de un key, segun el tutor se pone payload es por convención
         categoriesList,
       },
-    });
+    }); */
+    this.props.listarCategorias(categoriesList);
+
     const suggestionList = await Api.getSuggestion(10);
     //ESTO VA DIRECTAMENTE AL REDUCER
-    this.props.dispatch({
+    this.props.listarSugerencias(suggestionList);
+    /*  this.props.dispatch({
       type: 'SET_SUGGESTION_LIST',
       payload: {
         //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
         suggestionList,
       },
-    });
+    }); */
     /* console.log(movies);
     console.log('Categorias');
     console.log(categories); */
@@ -72,18 +76,22 @@ const mapStateToProps = state => {
   };
 };
 
-/* const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     listarCategorias: categoriesList => {
       dispatch({
         type: 'SET_CATEGORY_LIST', //Nombre de la acción
-        payload: {
-          //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
-          categoriesList,
-        },
+        //payload: {
+        //Aqui van los datos de la acción dentro de un key, segun el tutoor se pone payload es por convención
+        categoriesList,
+        // },
       });
     },
+    listarSugerencias: list => dispatch(actionSuggestion(list)),
   };
-}; */
+};
 
-export default connect(mapStateToProps)(app);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(app);

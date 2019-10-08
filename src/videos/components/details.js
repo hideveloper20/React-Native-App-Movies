@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, Image, StyleSheet, ScrollView} from 'react-native';
-import {WebView} from 'react-native-webview';
+import WebView from 'react-native-webview';
 
 const makeHTML = id => {
   return `
