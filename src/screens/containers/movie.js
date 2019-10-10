@@ -7,6 +7,7 @@ import Close from '../../sections/components/close';
 import {connect} from 'react-redux';
 import Details from '../../videos/components/details';
 import {Animated} from 'react-native';
+import {actionCloseMovie} from '../../../actions/actions';
 
 class Movie extends Component {
   state = {
@@ -14,12 +15,13 @@ class Movie extends Component {
   };
   closeVideo = () => {
     //Tiene que despachar una accion y para dispacharla tiene que estar conectado al store
-    this.props.dispatch({
+    /* this.props.dispatch({
       type: 'SET_SELECTED_MOVIE', //Accion
       payload: {
         movie: null, //Con esto va dar falso en app y me manda al principal
       },
-    });
+    }); */
+    this.props.closeMovieSelected();
   };
   componentDidMount() {
     Animated.timing(this.state.opacity, {
@@ -49,4 +51,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Movie);
+const mapDispatchToProps = dispatch => {
+  return {
+    closeMovieSelected: () => dispatch(actionCloseMovie()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Movie);

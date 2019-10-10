@@ -9,7 +9,8 @@ import {connect} from 'react-redux';
 const mapStateToProps = state => {
   /* debugger; */
   return {
-    list: state.categoriesList, //Lo recibo de un state global en vez de un componente superior
+    //list: state.categoriesList, //Lo recibo de un state global en vez de un componente superior
+    list: state.categoryReducer.listCategories,
   };
 };
 

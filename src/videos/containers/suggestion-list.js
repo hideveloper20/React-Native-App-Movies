@@ -5,13 +5,7 @@ import Empty from '../components/empty';
 import Separator from '../components/vertical-separator';
 import Suggestion from '../components/suggestion';
 import {connect} from 'react-redux';
-
-const mapStateToProps = state => {
-  return {
-    list: state.suggestionList,
-    //list: state.suggestionsReducer,
-  };
-};
+import {actionSelectedMovie} from '../../../actions/actions';
 
 class SuggestionList extends Component {
   keyExtractor = item => item.id.toString(); //Anexar la key a la lista, la key tiene que ser texto y la extraigo del item
@@ -20,14 +14,16 @@ class SuggestionList extends Component {
   viewMovie = item => {
     //recibo el item que es el objeto que tiene todas las partes de la pelicula, nombre, background, otras cosas mas
     //Como el componente esta conectado a redux puedo usar el dispatch
-    this.props.dispatch({
+    /*  this.props.dispatch({
       type: 'SET_SELECTED_MOVIE', //accion
       payload: {
         movie: item,
       },
-    });
+    }); */
+    this.props.movieSelected(item);
   };
   rendItem = ({item}) => {
+    console.log(item);
     return (
       <Suggestion
         {...item}
@@ -68,6 +64,20 @@ class SuggestionList extends Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const mapStateToProps = state => {
+  return {
+    //list: state.suggestionList,
+    list: state.suggestionsReducer.listSuggestions,
+  };
+};
 
-export default connect(mapStateToProps)(SuggestionList);
+const mapDispatchToProps = dispatch => {
+  return {
+    movieSelected: movie => dispatch(actionSelectedMovie(movie)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SuggestionList);
